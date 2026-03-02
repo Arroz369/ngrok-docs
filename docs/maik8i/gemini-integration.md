@@ -1,52 +1,35 @@
 ---
-title: 🧠 Integração Gemini AI
-sidebar_label: Inteligência Gemini
+id: gemini-integration
+title: 🧠 Integração com Gemini (Inteligência do MAIK8I)
+sidebar_label: Gemini
 ---
 
-# Integração com Gemini 1.5 Flash
+# Integração com Gemini: O Cérebro do MAIK8I
 
-O **MAIK8I** utiliza o modelo `gemini-1.5-flash` para processar dados de produtos em tempo real e gerar estratégias de marketing automatizadas. Esta integração é o núcleo de inteligência que transforma links do Mercado Livre em conteúdo de venda.
+Este documento detalha como o **MAIK8I** utiliza a inteligência artificial do Google Gemini para analisar dados e gerar insights acionáveis, especialmente para a criação de ganchos de venda e otimização de produtos na Prime Store.
 
----
+## 💡 Como o MAIK8I "Pensa"
 
-## 🛠️ Arquitetura do Fluxo de Dados
+O MAIK8I não apenas processa dados; ele os interpreta e gera estratégias. A integração com o Gemini permite:
 
-A inteligência opera em quatro camadas distintas:
+1.  **Análise Contextual:** O Gemini recebe informações sobre produtos, histórico de vendas e tendências de mercado.
+2.  **Geração de Ganchos de Venda:** Com base na análise, a IA formula descrições de produtos e argumentos de venda persuasivos, adaptados ao público-alvo.
+3.  **Otimização Contínua:** Através de feedback e novas informações, o Gemini refina suas sugestões, buscando sempre a máxima eficácia.
 
-1.  **Ingestão:** O sistema detecta novos registros na coleção `products` do Firestore (via Planilha ou API).
-2.  **Processamento:** A Cloud Function `analyze-sheet` é disparada via gatilho HTTP/Eventarc.
-3.  **Inferência:** O prompt estruturado é enviado ao Gemini 1.5 Flash, contendo o contexto do produto e a persona da **Prime Store**.
-4.  **Ação:** O retorno da IA é salvo na coleção `decisions`, aguardando a aprovação do Comandante para publicação.
+## 🛠️ Arquitetura da Integração
 
----
+A integração do Gemini é realizada através da Cloud Function `analyze-sheet`, que atua como o intermediário entre a planilha de dados da Prime Store e o modelo de IA do Gemini.
 
-## 📝 Estrutura do Prompt (O "Motor")
+### Fluxo de Dados:
 
-Para garantir ganchos (Hooks) de alta conversão, o MAIK8I utiliza a técnica de **Chain-of-Thought**. O prompt enviado à IA segue este modelo:
+1.  **Entrada:** A Cloud Function recebe dados de produtos (título, preço, descrição, etc.) da planilha.
+2.  **Processamento:** A função envia esses dados ao Gemini, solicitando a geração de ganchos de venda ou a análise de otimização.
+3.  **Saída:** O Gemini retorna o texto gerado ou as sugestões de otimização, que são então processadas pela Cloud Function e, posteriormente, atualizadas no Firestore ou em outras plataformas.
 
-> "Você é o especialista de marketing da Prime Store. Analise o produto [NOME] do link [URL]. Gere um Hook de 15 segundos para Reels focado em curiosidade e escassez. Use uma linguagem dinâmica e direta."
+## 🔑 Configuração da API Gemini
 
----
+A chave da API Gemini (`GEMINI_API_KEY`) é armazenada de forma segura no Google Secret Manager e acessada pela Cloud Function durante a execução. Isso garante que as credenciais sensíveis nunca sejam expostas no código-fonte ou em variáveis de ambiente não seguras.
 
-## ⚙️ Configuração de Parâmetros
+## 📈 Otimização e Escalabilidade
 
-Para manter a consistência, utilizamos os seguintes hiperparâmetros na API:
-
-| Parâmetro | Valor | Descrição |
-| :--- | :--- | :--- |
-| **Temperature** | 0.7 | Equilíbrio entre criatividade e precisão técnica. |
-| **TopP** | 0.95 | Garante diversidade no vocabulário de vendas. |
-| **Max Output Tokens** | 1024 | Suficiente para roteiros e descrições detalhadas. |
-
----
-
-## 🔐 Segurança e Custos
-
-* **Chaves de API:** Gerenciadas via `Secret Manager` do GCP para evitar vazamentos no código.
-* **Tier Gratuito:** O sistema é otimizado para rodar dentro das 1.500 requisições gratuitas mensais do Google, garantindo custo zero na fase de validação.
-
----
-
-:::tip Dica do Comandante
-Sempre que o desempenho de um Hook for baixo, ajuste a `Temperature` no arquivo `main.py` para valores mais baixos (0.4) para obter textos mais diretos e técnicos.
-:::
+A arquitetura serverless da Cloud Function, combinada com a escalabilidade do Gemini, permite que o MAIK8I processe grandes volumes de dados e gere insights rapidamente, adaptando-se à demanda da Prime Store sem a necessidade de gerenciamento de infraestrutura.
