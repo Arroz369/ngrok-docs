@@ -13,3 +13,8 @@ O Maik8i não é apenas um chatbot — é um sistema operacional pessoal baseado
 - `config/`: Regras do Firestore e configurações.
 - `scripts/`: Automação de setup e deploy.
 - `docs/`: Documentação técnica.
+
+## 🔗 Links do Ecossistema
+- **Planilha Gênesis (Input):** [Acessar Planilha](https://docs.google.com/spreadsheets/d/16tiUZVNOqQWZOmn43ecq_YOdYw7dVbrdt5Q17CGDPg0/)
+- **Apps Script (Motor de Injeção):** [Configurar Script](https://script.google.com/u/0/home/projects/1l5XCLH8l9ktCInBTOU2ebhfQZLIytCZKl69irt15CKkLjjHme3CU0GaA/edit)
+- **Firebase Studio (Banco de Dados):** [Monitorar Firestore](https://studio.firebase.google.com/studio-5108877760)

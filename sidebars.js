@@ -4,7 +4,7 @@ const sidebars = {
     {
       type: 'category',
       label: '🚀 Início: Gênesis Painel',
-      items: ['index'],
+      items: ['README'],
     },
     {
       type: 'category',
