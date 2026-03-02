@@ -2,6 +2,9 @@
   command = "pnpm run build"
   publish = "build"
 
+[build.environment]
+  NODE_VERSION = "22"
+
 [[redirects]]
   from = "/"
   to = "/docs/"
@@ -20,3 +23,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Content-Type-Options = "nosniff"
     Content-Security-Policy = "upgrade-insecure-requests"
+
+[context.production]
+  command = "echo '🚀 Lançando Documentação MAIK8I...' && pnpm run build"

@@ -27,6 +27,7 @@ const sidebars = {
       label: '📊 Gestão PRIME STORE',
       items: [
         'faq/faq',
+				'maik8i/visualizador-3d',
       ],
     },
   ],
