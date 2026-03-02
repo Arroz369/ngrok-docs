@@ -590,7 +590,11 @@ const sidebars = {
 		{
 			label: "MAIK8I",
 			type: "category",
-			items: ["maik8i/gemini-integration"],
+			items: [
+				"maik8i/gemini-integration",
+				"maik8i/setup-guide",
+				"maik8i/automation-flows",
+			],
 		},
 		{
 			type: "html",
