@@ -33,36 +33,39 @@ module.exports = function (context, options) {
 					docs: [],
 				};
 
-				fs.readdirSync(integrationDir).flatMap(async (x) => {
-					const filePath = path.join(integrationDir, x);
+				const files = fs.readdirSync(integrationDir);
+				await Promise.all(
+					files.map(async (x) => {
+						const filePath = path.join(integrationDir, x);
 
-					// Ignore index files, folders and non-markdown files
-					const isFile = fs.lstatSync(filePath).isFile();
-					if (!isFile || x.indexOf(".md") < 0) {
-						return;
-					}
+						// Ignore index files, folders and non-markdown files
+						const isFile = fs.lstatSync(filePath).isFile();
+						if (!isFile || x.indexOf(".md") < 0) {
+							return;
+						}
 
-					// Parse markdown
-					const fileContent = fs.readFileSync(filePath).toString();
-					const fileMarkdown = await utils.parseMarkdownFile({
-						filePath,
-						fileContent,
-						parseFrontMatter: utils.DEFAULT_PARSE_FRONT_MATTER,
-					});
+						// Parse markdown
+						const fileContent = fs.readFileSync(filePath).toString();
+						const fileMarkdown = await utils.parseMarkdownFile({
+							filePath,
+							fileContent,
+							parseFrontMatter: utils.DEFAULT_PARSE_FRONT_MATTER,
+						});
 
-					// Add file details as metadata information on integration
-					if (x === "index.mdx") {
-						integration.metadata = fileMarkdown.frontMatter;
-						return;
-					}
+						// Add file details as metadata information on integration
+						if (x === "index.mdx") {
+							integration.metadata = fileMarkdown.frontMatter;
+							return;
+						}
 
-					// Add file details as doc on integration
-					integration.docs.push({
-						// clean up things like .md
-						path: path.join(integration.path, utils.fileToPath(x)),
-						...fileMarkdown,
-					});
-				});
+						// Add file details as doc on integration
+						integration.docs.push({
+							// clean up things like .md
+							path: path.join(integration.path, utils.fileToPath(x)),
+							...fileMarkdown,
+						});
+					}),
+				);
 
 				integrations.push(integration);
 			}
