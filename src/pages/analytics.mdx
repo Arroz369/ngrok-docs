@@ -1,0 +1,24 @@
+---
+title: MAIK8I Analytics
+description: Painel de controle de inteligência da Prime Store
+---
+
+import AnalyticsDashboard from '@site/src/components/AnalyticsDashboard';
+
+# 📊 MAIK8I Analytics
+
+Bem-vindo ao painel de controle da **Gênesis Engine**. Aqui você acompanha em tempo real o processamento da IA sobre os produtos da **Prime Store**.
+
+<AnalyticsDashboard />
+
+---
+
+## 🤖 Fluxo de Inteligência
+O sistema monitora a coleção `products` no Firestore. Cada item injetado passa por uma análise do **Gemini 1.5 Flash** para:
+- Criação de ganchos de venda (Hooks).
+- Otimização de SEO e palavras-chave.
+- Sugestão de precificação dinâmica.
+
+:::info Sincronização
+Os dados acima são atualizados automaticamente conforme o Apps Script injeta novas linhas da Planilha Gênesis.
+:::
