@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Função para verificar se o usuário está logado
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Regras para a coleção de Produtos (Leitura para todos logados, escrita apenas via sistema/admin)
+    match /products/{productId} {
+      allow read: if isAuthenticated();
+      allow write: if isAuthenticated() && request.auth.token.admin == true;
+    }
+
+    // Regras para Decisões (Onde a IA posta as sugestões)
+    match /decisions/{decisionId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // Configurações do usuário (Privado: cada um só vê o seu)
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId;
+    }
+  }
+}
