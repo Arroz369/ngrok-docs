@@ -87,7 +87,7 @@ const config = {
 					{
 						title: "Sistema",
 						items: [
-							{ label: "Visão Geral", to: "/docs/README" },
+							{ label: "Visão Geral", to: "/docs/" },
 							{ label: "Configuração GCP", to: "/docs/maik8i/setup-guide" },
 						],
 					},
