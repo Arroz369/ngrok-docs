@@ -20,6 +20,8 @@ const config = {
 
 	organizationName: "Arroz369",
 	projectName: "maik8i-genesis",
+	url: "https://maik8i-genesis.netlify.app", // Fallback URL para CI
+	baseUrl: "/",
 
 	i18n: {
 		defaultLocale: "pt-BR",
@@ -59,6 +61,11 @@ const config = {
 	themeConfig:
 		/** @type {import('@docusaurus/preset-classic').ThemeConfig} */
 		{
+			colorMode: {
+				defaultMode: "light",
+				disableSwitch: true,
+				respectPrefersColorScheme: false,
+			},
 			image: "img/docusaurus-social-card.jpg",
 			navbar: {
 				title: "MAIK8I",

@@ -1,0 +1,31 @@
+{
+  "hosting": {
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "functions": [
+    {
+      "source": "maik8i/functions/analyze-sheet",
+      "codebase": "analyze-sheet",
+      "runtime": "python311"
+    },
+    {
+      "source": "maik8i/functions/seed-products",
+      "codebase": "seed-products",
+      "runtime": "python311"
+    }
+  ],
+  "firestore": {
+    "rules": "maik8i/config/firestore.rules"
+  }
+}

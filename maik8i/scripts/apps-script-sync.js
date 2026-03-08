@@ -6,7 +6,13 @@
 
 const PROJECT_ID = "maik8i-genesis"; // Ajuste para o seu ID do GCP
 const CLOUD_FUNCTION_URL = `https://us-central1-${PROJECT_ID}.cloudfunctions.net/seed-products`;
-const API_KEY = "maik8i-secure-token-2026";
+const API_KEY = "mk8i_prod_7d2e9f1a4b";
+
+/**
+ * 🔒 INSTRUÇÃO DE SEGURANÇA:
+ * Para funcionar com '--no-allow-unauthenticated', você deve adicionar o email
+ * do proprietário da planilha como 'Cloud Functions Invoker' no console do GCP.
+ */
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -42,6 +48,7 @@ function syncToFirestore() {
     method: 'post',
     contentType: 'application/json',
     headers: {
+      'Authorization': 'Bearer ' + ScriptApp.getIdentityToken(),
       'X-API-KEY': API_KEY
     },
     payload: payload,
