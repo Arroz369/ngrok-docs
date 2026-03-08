@@ -68,7 +68,7 @@ Para garantir que seus dados fiquem protegidos:
 ## ✅ Passo 4: Validação
 
 Para testar se tudo está funcionando:
-1.  Insira um documento na coleção `products` do Firestore com o campo `status: "Pendente"`.
+1.  Insira um documento na coleção `produtos_vitrine` do Firestore com o campo `status: "Pendente"`.
 2.  Aguarde alguns segundos e verifique a coleção `decisions` para ver o insight gerado pela IA.
 3.  O status do produto deve mudar para `Processado`.
 

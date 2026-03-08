@@ -1,3 +1,4 @@
+import os
 import logging
 import functions_framework
 from google.cloud import firestore
@@ -5,12 +6,18 @@ from google.cloud import firestore
 # Configuração
 logging.basicConfig(level=logging.INFO)
 db = firestore.Client()
+API_KEY = os.environ.get("MAIK8I_API_KEY")
 
 @functions_framework.http
 def seed_products(request):
     """
     Recebe uma lista de produtos via POST e os salva na coleção 'produtos_vitrine'.
     """
+    # Validação de Segurança
+    if request.headers.get("X-API-KEY") != API_KEY:
+        logging.warning("Tentativa de acesso não autorizado.")
+        return 'Não autorizado.', 401
+
     if request.method != 'POST':
         return 'Método não permitido. Use POST.', 405
 

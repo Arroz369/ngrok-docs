@@ -10,6 +10,7 @@ import google.generativeai as genai
 logging.basicConfig(level=logging.INFO)
 genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
 db = firestore.Client()
+API_KEY = os.environ.get("MAIK8I_API_KEY")
 
 BATCH_LIMIT = 50  # Evita timeout por excesso de produtos
 
@@ -19,6 +20,10 @@ def analyze_sheet(request):
     Analisa produtos com status 'Pendente' no Firestore,
     gera hooks de venda via Gemini e registra para aprovação.
     """
+    # Validação de Segurança
+    if request.headers.get("X-API-KEY") != API_KEY:
+        logging.warning("Tentativa de acesso não autorizado à análise.")
+        return 'Não autorizado.', 401
     try:
         # Busca produtos pendentes com limite de segurança
         products_ref = (

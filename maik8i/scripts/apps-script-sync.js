@@ -4,7 +4,9 @@
  * Ele envia os produtos da aba '500 produtos' para a Cloud Function seed-products.
  */
 
-const CLOUD_FUNCTION_URL = "https://us-central1-SEU_PROJETO.cloudfunctions.net/seed-products";
+const PROJECT_ID = "maik8i-genesis"; // Ajuste para o seu ID do GCP
+const CLOUD_FUNCTION_URL = `https://us-central1-${PROJECT_ID}.cloudfunctions.net/seed-products`;
+const API_KEY = "maik8i-secure-token-2026";
 
 function onOpen() {
   const ui = SpreadsheetApp.getUi();
@@ -28,6 +30,8 @@ function syncToFirestore() {
       name: row[1],
       link: row[2],
       price: row[3],
+      hook: row[4],
+      script: row[5],
       status: row[6] || 'Pendente'
     };
   }).filter(p => p.name); // Remove linhas vazias
@@ -37,6 +41,9 @@ function syncToFirestore() {
   const options = {
     method: 'post',
     contentType: 'application/json',
+    headers: {
+      'X-API-KEY': API_KEY
+    },
     payload: payload,
     muteHttpExceptions: true
   };

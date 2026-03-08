@@ -19,7 +19,7 @@ const config = {
 	trailingSlash: true,
 
 	organizationName: "Arroz369",
-	projectName: "ngrok-docs",
+	projectName: "maik8i-genesis",
 
 	i18n: {
 		defaultLocale: "pt-BR",
@@ -75,7 +75,7 @@ const config = {
 					},
 					{ to: "/analytics", label: "📊 Analytics", position: "left" },
 					{
-						href: "https://github.com/Arroz369/ngrok-docs",
+						href: "https://github.com/Arroz369/maik8i-genesis",
 						label: "GitHub",
 						position: "right",
 					},

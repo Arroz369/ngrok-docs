@@ -7,7 +7,7 @@ service cloud.firestore {
     }
 
     // Regras para a coleção de Produtos (Leitura para todos logados, escrita apenas via sistema/admin)
-    match /products/{productId} {
+    match /produtos_vitrine/{productId} {
       allow read: if isAuthenticated();
       allow write: if isAuthenticated() && request.auth.token.admin == true;
     }
