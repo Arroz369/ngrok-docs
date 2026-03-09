@@ -1,0 +1,25 @@
+---
+title: 📊 Dashboard de Inteligência
+hide_table_of_contents: true
+---
+
+import AnalyticsDashboard from '@site/src/components/AnalyticsDashboard';
+
+# Gênesis Analytics
+
+Bem-vindo à cabine de comando do **MAIK8I**. Aqui, os dados injetados via Planilha Gênesis são transformados em métricas de performance e insights de IA.
+
+---
+
+<AnalyticsDashboard />
+
+---
+
+### 🛡️ Status do Sistema
+* **Injeções Recentes:** 131 itens processados.
+* **Motor de IA:** Gemini 1.5 Pro / Flash.
+* **Latência de Processamento:** Médias calculadas em tempo real.
+
+:::info Próxima Manobra
+Se os gráficos acima estiverem vazios, certifique-se de que a Cloud Function `generateDailyAnalytics` foi disparada no seu console do Firebase para consolidar os dados da coleção `products`.
+:::

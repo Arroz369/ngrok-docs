@@ -1,0 +1,42 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 🛡️ GOVERNANÇA MAIK8I
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && request.auth.token.admin == true;
+    }
+
+    function isEmployee() {
+      return isAuthenticated() && (request.auth.token.role == 'employee' || isAdmin());
+    }
+
+    // Coleção Principal de Vendas (Vitrine)
+    match /produtos_vitrine/{productId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin(); // Apenas admin altera o catálogo oficial
+    }
+
+    // Agentes e Sugestões (IA)
+    match /decisions/{decisionId} {
+      allow read: if isEmployee();
+      allow create: if isEmployee();
+      allow update, delete: if isAdmin(); // Funcionário sugere, Admin aprova/deleta
+    }
+
+    // Logs de Auditoria
+    match /audit_logs/{logId} {
+      allow read: if isAdmin();
+      allow create: if isAuthenticated();
+    }
+
+    // Perfil do Usuário
+    match /users/{userId} {
+      allow read, write: if request.auth.uid == userId || isAdmin();
+    }
+  }
+}
