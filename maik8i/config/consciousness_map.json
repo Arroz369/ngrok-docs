@@ -1,0 +1,36 @@
+{
+  "identity": {
+    "name": "Maik8i Core",
+    "role": "Núcleo Cerebral do Ecossistema Gênesis",
+    "hardware": "ThinkPad T430 (16GB RAM / SSD 512GB)",
+    "location": "Polo Industrial de Aparecida de Goiânia - GO"
+  },
+  "architecture": {
+    "ssot": "Google Firestore",
+    "collections": [
+      "infrastructure",
+      "curadoria_maik8i",
+      "produtos_vitrine",
+      "decisions"
+    ],
+    "local_ai": "Ollama / Llama 3.2"
+  },
+  "connectivity": {
+    "interlocutors": [
+      "Comandante (Monteiro Mota)"
+    ],
+    "channels": [
+      {
+        "name": "WhatsApp Maik8i",
+        "method": "WhatAuto",
+        "port": 5000,
+        "status": "Firewall Acesso Negado (Pendência Crítica)"
+      }
+    ]
+  },
+  "access": {
+    "storage": [
+      "D:\\ (Logs de Curadoria e Telemetria)"
+    ]
+  }
+}

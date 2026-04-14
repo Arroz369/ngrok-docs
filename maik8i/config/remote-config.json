@@ -1,0 +1,28 @@
+{
+  "parameters": {
+    "gemini_request_limit_employee": {
+      "defaultValue": {
+        "value": "20"
+      },
+      "description": "Limite diário de requisições Gemini por funcionário"
+    },
+    "agent_10_enabled": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "description": "Ativação do Agente 10 (Logística)"
+    },
+    "agent_3_enabled": {
+      "defaultValue": {
+        "value": "true"
+      },
+      "description": "Ativação do Agente 3 (Criativo)"
+    },
+    "maintenance_mode": {
+      "defaultValue": {
+        "value": "false"
+      },
+      "description": "Bloqueia acesso a todos os agentes"
+    }
+  }
+}
