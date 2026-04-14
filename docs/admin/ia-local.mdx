@@ -1,0 +1,31 @@
+---
+title: 🧠 Comando Antigravity Local
+sidebar_label: Antigravity (T430)
+---
+
+import IAControl from '@site/src/components/IAControl';
+
+# Matriz de Comando Antigravity
+
+Bem-vindo ao centro de orquestração da reconstrução. Aqui, o módulo **Jules** (UI) se conecta ao **Antigravity** (Motor Local) para restaurar a soberania do ecossistema Gênesis.
+
+## Fluxo de Sincronização v8
+
+1.  **Handshake:** O site envia um sinal para o Firebase.
+2.  **SSoT:** O Firestore enfileira o comando de "despertar".
+3.  **Matriz Local:** O script Python no seu T430 detecta o pulso via *Real-Time Listener*.
+4.  **Processamento:** O Ollama processa o relatório de reconstrução e os logs de telemetria do Drive D:.
+5.  **Resultado:** As decisões são injetadas de volta no Gênesis Analytics.
+
+<IAControl />
+
+---
+
+### 🛡️ Status de Soberania
+*   **Banco de Dados:** Firestore SSoT (Ativo)
+*   **Motor Local:** Ollama / Llama 3.2 (Ativo)
+*   **Conexão D::** Sincronizando metadados de curadoria.
+
+:::danger Atenção
+A reconstrução v8 sobrescreve mapeamentos de colunas antigos do Apps Script para evitar corrupção de dados. Certifique-se de que o relatório Jules retornou "Conectado" no console do Google.
+:::
